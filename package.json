@@ -1,25 +1,28 @@
 {
-  "name": "SRI-WiFi",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "game-of-life",
+  "version": "2.0.0",
+  "description": "Conway's Game of Life in plain modern JavaScript. No build step.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Luis Matute",
+  "engines": {
+    "node": ">=20"
   },
-  "author": "Luis Matute - luis.matute@me.com http://luismatute.me",
+  "scripts": {
+    "start": "npx --yes serve@14 -l 5173 .",
+    "test": "node --test \"test/**/*.test.js\"",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p jsconfig.json",
+    "check": "npm run lint && npm run format:check && npm run typecheck && npm test"
+  },
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-browserify": "^0.5.1",
-    "gulp-concat": "^2.5.2",
-    "gulp-connect": "^2.2.0",
-    "gulp-jshint": "^1.10.0",
-    "gulp-load-plugins": "^0.10.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-ruby-sass": "^1.0.5",
-    "gulp-uglify": "^1.2.0",
-    "gulp-util": "^3.0.4",
-    "gulp-watch": "^4.2.4",
-    "gulp-wrap": "^0.11.0",
-    "yargs": "^3.9.0"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2"
   }
 }
