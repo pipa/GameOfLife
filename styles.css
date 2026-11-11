@@ -1,0 +1,257 @@
+:root {
+  color-scheme: dark;
+  --bg: #06081c;
+  --ink: #eaf6ff;
+  --muted: #9aa6d6;
+  --accent: #5ee9ff;
+  --violet: #7b5cff;
+  --panel: rgba(12, 14, 44, 0.72);
+  font-family:
+    ui-rounded,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg) url('./assets/backdrop.webp') center / cover fixed no-repeat;
+  color: var(--ink);
+}
+
+.app {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  max-width: 1040px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: max(12px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  align-content: start;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: clamp(1.15rem, 4.5vw, 1.5rem);
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 18px rgba(94, 233, 255, 0.5);
+}
+
+.brand img {
+  border-radius: 8px;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+}
+
+.stats div {
+  text-align: right;
+}
+
+.stats dt {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: min(64dvh, 620px);
+  touch-action: none;
+}
+
+canvas {
+  display: block;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(94, 233, 255, 0.22),
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(123, 92, 255, 0.15);
+  cursor: crosshair;
+}
+
+canvas:focus-visible,
+.btn:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.intro {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 40%, rgba(6, 8, 28, 0.55), rgba(6, 8, 28, 0.88));
+  backdrop-filter: blur(2px);
+}
+
+.intro[hidden] {
+  display: none;
+}
+
+.intro img {
+  width: clamp(88px, 22vmin, 140px);
+  height: auto;
+  border-radius: 22%;
+  filter: drop-shadow(0 0 24px rgba(94, 233, 255, 0.35));
+}
+
+.intro h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  text-shadow: 0 0 22px rgba(94, 233, 255, 0.55);
+}
+
+.intro p {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 14px;
+  align-items: center;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid rgba(94, 233, 255, 0.3);
+  border-radius: 999px;
+  padding: 8px 18px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, #7af4ff, #2bb6d9);
+  color: #031420;
+  border: 0;
+  min-width: 96px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--muted);
+}
+
+select {
+  font: inherit;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid rgba(94, 233, 255, 0.3);
+  border-radius: 10px;
+  padding: 8px 10px;
+  min-height: 40px;
+}
+
+input[type='range'] {
+  accent-color: var(--accent);
+  width: 120px;
+}
+
+input[type='checkbox'] {
+  accent-color: var(--accent);
+  width: 18px;
+  height: 18px;
+}
+
+output {
+  min-width: 3.5ch;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+@media (pointer: coarse) {
+  .hint {
+    display: none;
+  }
+  .stage {
+    height: min(56dvh, 620px);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .intro {
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .controls .btn {
+    padding-inline: 13px;
+  }
+  .btn.primary {
+    min-width: 80px;
+  }
+}
